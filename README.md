@@ -1,5 +1,7 @@
 # fluent-plugin-siteguard-parser
 
+[![Build Status](https://travis-ci.org/ch1aki/fluent-plugin-siteguard-parser.svg?branch=master)](https://travis-ci.org/ch1aki/fluent-plugin-siteguard-parser)
+
 [Fluentd](https://fluentd.org/) parser plugin to do something.
 
 TODO: write description for you plugin.
