@@ -21,7 +21,10 @@ module Fluent
       Fluent::Plugin.register_parser("siteguard_parser", self)
 
       DETECT = /^(?<time>[\d.]+)\s+(?<connect_time>\d+)\s(?<host_ip>[\S.]+)\sTCP\_MISS\/000\s(?<file_size>\d+)\s(?<method>[A-Z]+)\s(?<url>\S+)\s-\sDIRECT\/(?<hierarchy_code>[\d.]+)\s(?<content_type>\S+)\sDETECT-STAT:WAF:(?<detect_name>[^:]+)::(?<detect_str>[^:]*):(?<all_detect_str>[^:]*):\sACTION:(?<action>[^:]+):\sJUDGE:(?<judge>[^:]+):(?<monitored>[01]):\sSEARCH-KEY:(?<serch_key>[\d.]+):$/
+      FORM = /^(?<time>[\d.]+)\s+(?<process_id>\d+)\s(?<host_ip>[\S.]+)\s(?<url>\S+)\s(?<type>\S+):\s(?<param>\S+)\sSEARCH-KEY:(?<serch_key>[\d.]+):$/
       TIME_FORMAT = "%s"
+
+      config_param :message_format, :enum, list: [:detect, :form], default: :detect
 
       def initialize
         super
@@ -31,10 +34,16 @@ module Fluent
       def configure(conf)
         super
         @time_parser = time_parser_create(format: TIME_FORMAT)
+        @regexp = case @message_format
+                  when :detect
+                    DETECT
+                  when :form
+                    FORM
+                  end
       end
 
       def parse(text)
-        m = DETECT.match(text)
+        m = @regexp.match(text)
         unless m
           yield nil, nil
           return
