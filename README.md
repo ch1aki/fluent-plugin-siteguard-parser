@@ -8,36 +8,20 @@ TODO: write description for you plugin.
 
 ### RubyGems
 
-```
-$ gem install fluent-plugin-siteguard-parser
-```
+wip
 
 ### Bundler
 
 Add following line to your Gemfile:
 
-```ruby
-gem "fluent-plugin-siteguard-parser"
-```
-
-And then execute:
-
-```
-$ bundle
-```
+wip
 
 ## Configuration
 
-You can generate configuration template:
-
-```
-$ fluent-plugin-config-format parser siteguard-parser
-```
-
-You can copy and paste generated documents here.
+wip
 
 ## Copyright
 
-* Copyright(c) 2019- TODO: Write your name
+* Copyright(c) 2019- ch1aki
 * License
   * Apache License, Version 2.0
