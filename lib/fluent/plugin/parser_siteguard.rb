@@ -17,7 +17,7 @@ require "fluent/plugin/parser"
 
 module Fluent
   module Plugin
-    class SiteguardParserParser < Fluent::Plugin::Parser
+    class SiteguardParser < Fluent::Plugin::Parser
       Fluent::Plugin.register_parser("siteguard_parser", self)
 
       DETECT = /^(?<time>[\d.]+)\s+(?<connect_time>\d+)\s(?<host_ip>[\S.]+)\sTCP\_MISS\/000\s(?<file_size>\d+)\s(?<method>[A-Z]+)\s(?<url>\S+)\s-\sDIRECT\/(?<hierarchy_code>[\d.]+)\s(?<content_type>\S+)\sDETECT-STAT:WAF:(?<detect_name>[^:]+)::(?<detect_str>[^:]*):(?<all_detect_str>[^:]*):\sACTION:(?<action>[^:]+):\sJUDGE:(?<judge>[^:]+):(?<monitored>[01]):\sSEARCH-KEY:(?<serch_key>[\d.]+):$/

@@ -1,10 +1,10 @@
 require "helper"
-require "fluent/plugin/parser_siteguard_parser.rb"
+require "fluent/plugin/parser_siteguard.rb"
 
-class SiteguardParserParserTest < Test::Unit::TestCase
+class SiteguardParserTest < Test::Unit::TestCase
   setup do
     Fluent::Test.setup
-    @parser = Fluent::Test::Driver::Parser.new(Fluent::Plugin::SiteguardParserParser)
+    @parser = Fluent::Test::Driver::Parser.new(Fluent::Plugin::SiteguardParser)
   end
 
   def test_parse_detect
